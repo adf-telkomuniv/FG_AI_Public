@@ -95,7 +95,7 @@ class Sketcher:
         cv.setMouseCallback(self.windowname, self.on_mouse)
 
     def show(self):
-        cv.cv2_imshow(self.windowname, self.dests[0])
+        cv2_imshow(self.windowname, self.dests[0])
 
     def on_mouse(self, event, x, y, flags, param):
         pt = (x, y)
