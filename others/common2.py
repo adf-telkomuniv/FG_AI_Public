@@ -7,7 +7,6 @@ This module contains some common routines used by other samples.
 # Python 2/3 compatibility
 from __future__ import print_function
 import sys
-from google.colab.patches import cv2_imshow
 PY3 = sys.version_info[0] == 3
 
 if PY3:
@@ -95,7 +94,7 @@ class Sketcher:
         cv.setMouseCallback(self.windowname, self.on_mouse)
 
     def show(self):
-        cv.cv2_imshow(self.windowname, self.dests[0])
+        cv.imshow(self.windowname, self.dests[0])
 
     def on_mouse(self, event, x, y, flags, param):
         pt = (x, y)
