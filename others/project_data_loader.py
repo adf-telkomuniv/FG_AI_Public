@@ -89,7 +89,7 @@ class DataLoader():
 				c = Counter(example['objects']['label'])
 				y = c.most_common(1)[0][0]  
 				y_test.append(y)
-		test = (np.asarray(X_test),np.asarray(y_test))
+		test = (np.asarray(X_test[:2000]),np.asarray(y_test[:2000]))
 
 		del dataset
 		return train, val, test, class_names
