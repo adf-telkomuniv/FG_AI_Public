@@ -8,16 +8,16 @@ import tensorflow as tf
 import tensorflow_datasets as tfds
 
 class DataLoader():
-	def __init__(self, img_res=(128, 128)):
-		self.img_res = img_res	
+	def __init__(self, input_shape=(128, 128)):
+		input_shape = input_shape	
 
 	def load_data(self):
-		self.dataset, self.info = tfds.load(name="voc2007", with_info=True)		
-		self.class_names=self.info.features['labels'].names		
+		dataset, info = tfds.load(name="voc2007", with_info=True)		
+		class_names=info.features['labels'].names		
 		
 		X_train = []
 		y_train = []
-		for example in tfds.as_numpy(self.dataset['train']):
+		for example in tfds.as_numpy(dataset['train']):
 			new_img = example['image']
 			new_img = cv.resize(new_img, input_shape[:2],interpolation = cv.INTER_AREA) 
 			
@@ -43,7 +43,7 @@ class DataLoader():
 
 		X_val = []
 		y_val = []
-		for example in tfds.as_numpy(self.dataset['validation']):
+		for example in tfds.as_numpy(dataset['validation']):
 			new_img = example['image']
 			new_img = cv.resize(new_img, input_shape[:2],interpolation = cv.INTER_AREA) 
 			
@@ -68,7 +68,7 @@ class DataLoader():
 
 		X_test = []
 		y_test = []
-		for example in tfds.as_numpy(self.dataset['test']):
+		for example in tfds.as_numpy(dataset['test']):
 			new_img = example['image']
 			new_img = cv.resize(new_img, input_shape[:2],interpolation = cv.INTER_AREA) 
 			
@@ -91,5 +91,5 @@ class DataLoader():
 				y_test.append(y)
 		test = (np.asarray(X_test),np.asarray(y_test))
 
-		del self.dataset
-		return train, val, test, self.class_names
+		del dataset
+		return train, val, test, class_names
