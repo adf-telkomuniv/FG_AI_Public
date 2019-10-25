@@ -12,7 +12,7 @@ class DataLoader():
 		self.input_shape = input_shape	
 
 	def load_data(self):
-		dataset, info = tfds.load(name="voc2007", with_info=True)		
+		dataset, info = tfds.load(name="voc", with_info=True)		
 		class_names=info.features['labels'].names		
 		
 		X_train = []
